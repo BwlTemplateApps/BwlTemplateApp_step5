@@ -1,0 +1,31 @@
+{{#if userdat.accounts}}
+<h2>Multiple Accounts available:</h2>
+{{#ifCond userdat.account '==' ''}}
+<p>Please select one of your accounts from the list below.</p>
+{{/ifCond}}
+<form action="/process" method="get">
+    <select name="account">
+	    {{#each userdat.accounts}}
+        <option value="{{this}}"{{ifEqual this @root.userdat.account ' selected'}}>{{decodeURI this}}</option>
+        {{/each}}
+    </select>
+    <input type="submit" name="action" value="select">
+</form>
+{{/if}}
+
+{{#if userdat.account}}
+<h1>Process Overview for Account '{{decodeURI userdat.account}}'</h1>
+<h2>Published process blueprints:</h2>
+{{#ifCond status '==' 200}}
+<ul>
+    {{#each (splitLines data)}}
+	{{#ifCond @key '!=' 0}}{{#ifCond this '!=' ''}}
+	<li><a href="/process?id={{index (splitCSV this) 1}}">{{index (splitCSV this) 0}}</a></li>
+	{{/ifCond}}{{/ifCond}}
+    {{/each}}
+</ul>
+{{else}}
+There was a problem reading the process list (code={{status}}): {{data}}
+{{/ifCond}}
+{{/if}}
+

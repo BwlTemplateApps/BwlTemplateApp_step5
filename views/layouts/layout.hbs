@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+    {{#if userdat.authenticated}}
+	<p><form action="/logout" method="post">
+        user:{{userdat.login}}  <input type="submit" name="method" value="LOGOUT">
+    </form></p>
+	{{/if}} 
+    {{{ body }}}
+</body>
+</html>

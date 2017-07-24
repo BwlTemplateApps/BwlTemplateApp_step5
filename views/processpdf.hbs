@@ -1,0 +1,9 @@
+<p><a href="/process">Back to overview</a></p>
+
+<h2>Process PDF: </h2>
+{{#ifCond status '==' 200}}
+    <object width="100%" height="600" type="application/pdf" data="data:application/pdf;base64,{{data}}">Problems showing embedded pdf</object>
+{{else}}
+There was a problem reading the process pdf (code={{status}}): {{data}}
+{{/ifCond}}
+

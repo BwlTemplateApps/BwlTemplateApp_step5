@@ -1,0 +1,9 @@
+<p><a href="/process">Back to overview</a></p>
+
+<h2>Process Details: </h2>
+{{#ifCond status '==' 200}}
+    <pre>{{toJSON data}}</pre>
+{{else}}
+There was a problem reading the process details (code={{status}}): {{data}}
+{{/ifCond}}
+
